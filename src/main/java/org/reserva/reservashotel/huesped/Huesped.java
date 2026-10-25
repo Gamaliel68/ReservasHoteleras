@@ -1,4 +1,4 @@
-package org.reserva.reservashotel.Huesped;
+package org.reserva.reservashotel.huesped;
 
 import java.time.OffsetDateTime;
 
