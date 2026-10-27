@@ -6,8 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.reserva.reservashotel.enums.RolEmpleado;
+import org.reserva.reservashotel.reserva.Reserva;
+import org.reserva.reservashotel.ticket.Ticket;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "empleado")
@@ -35,10 +38,26 @@ public class Empleado {
     private OffsetDateTime fechaBaja;
     @Column(name = "motivo_baja")
     private String motivoBaja;
-    // el bajaPorId hace referencia al ID del empleado
-    private Long bajaPorId;
+
     @Column(name = "creado_en", nullable = false)
     private OffsetDateTime creadoEn;
+
+    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
+    private List<Reserva> reservas;
+
+    @OneToMany(mappedBy = "empleado")
+    private List<Ticket> tickets;
+
+    //Empleado que da de baja.
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "baja_por_id")
+    private Empleado dadoDeBajaPor;
+
+    //Lista de empleados que fueron dados de baja.
+    @OneToMany(mappedBy = "dadoDeBajaPor", fetch = FetchType.LAZY)
+    private List<Empleado> empleadosDadosDeBaja;
+
+    //Me falta la relacion a:n entre empleado y empleado, como se hace esa jajaja
 
 
     /**

@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.reserva.reservashotel.enums.EstadoHabitacion;
 import org.reserva.reservashotel.enums.TipoHabitacion;
+import org.reserva.reservashotel.reserva.Reserva;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "habitacion")
@@ -23,7 +25,7 @@ public class Habitacion {
 
     @Column(nullable = false)
     @PositiveOrZero//Solo guarda valores positivos o 0
-    private Integer numero;
+    private Short numero;
 
     @Column(nullable = false)
     private Short piso;
@@ -43,10 +45,13 @@ public class Habitacion {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EstadoHabitacion estado;
-
+    @Column
     private String descripcion;
     @Column(nullable = false)
     private Boolean activa;
+
+    @OneToMany(mappedBy = "habitacion", fetch = FetchType.LAZY)
+    private List<Reserva> reservas;
 
     @PrePersist
     public void cuandoCreas(){

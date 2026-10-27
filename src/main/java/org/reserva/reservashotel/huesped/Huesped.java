@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.reserva.reservashotel.enums.Documento;
+import org.reserva.reservashotel.reserva.Reserva;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "huesped")
@@ -27,7 +29,7 @@ public class Huesped {
     private Documento tipoDocumento;
     @Column(name = "numero_documento", nullable = false, length = 40)
     private String numeroDocumento;
-    @Column(nullable = false, length = 40, unique = true)
+    @Column(name = "email", length = 150, unique = true)
     private String correo;
     @Column(nullable = false, length = 30)
     private String telefono;
@@ -35,6 +37,9 @@ public class Huesped {
     private String nacionalidad;
     @Column(name = "creado_en", nullable = false)
     private OffsetDateTime creadoEn;
+
+    @OneToMany(mappedBy = "huesped", fetch =  FetchType.LAZY)
+    private List<Reserva> reservas;
 
 
     @PrePersist
