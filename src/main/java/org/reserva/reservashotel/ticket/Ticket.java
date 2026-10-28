@@ -23,7 +23,7 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // En el numero hay una secuencia consecutiva (T-000001,...)
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String numero;
     /**
      *  Aqui van las FK de los ID'S de reserva y empleado

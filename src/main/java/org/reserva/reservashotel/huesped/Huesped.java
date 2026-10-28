@@ -31,9 +31,9 @@ public class Huesped {
     private String numeroDocumento;
     @Column(name = "email", length = 150, unique = true)
     private String correo;
-    @Column(nullable = false, length = 30)
+    @Column(length = 30)
     private String telefono;
-    @Column(nullable = false, length = 80)
+    @Column(length = 80)
     private String nacionalidad;
     @Column(name = "creado_en", nullable = false)
     private OffsetDateTime creadoEn;

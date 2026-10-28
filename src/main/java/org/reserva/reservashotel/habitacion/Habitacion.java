@@ -31,7 +31,7 @@ public class Habitacion {
     private Short piso;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)//Convierte de un enum a un String, ya que la BD guarda un varchar.
+    @Enumerated(EnumType.STRING)
     private TipoHabitacion tipo;
 
     @Column(nullable = false)
