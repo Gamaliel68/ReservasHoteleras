@@ -36,7 +36,7 @@ CREATE TABLE empleado(
 );
 
 
--- Tabla huesped
+-- Tabla
 -- los clientes no inician sesion ni guardan datos, lo hacen los empleados desde la plataforma
 CREATE TABLE huesped (
                          id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
